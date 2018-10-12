@@ -1,15 +1,22 @@
-import React, {Component} from "react";
-import classes from "./ActiveQuiz.module.scss"
+import React  from "react";
+import classes from "./ActiveQuiz.module.scss";
+import AnswerList from "./AnswersList/AnswersList"
 
-class ActiveQuiz extends Component {
-
-	render() {
-		return (
+const ActiveQuiz = (props) => (
 			<div className={classes.ActiveQuiz}>
-				<h1>ActiveQuiz</h1>
+				<p className={classes.ActiveQuiz__question}>
+					<span>
+						<strong>2.</strong>&nbsp;
+						{props.question}
+					</span>	
+					<small>4 из 12</small>	
+				</p>
+				<AnswerList
+					answers={props.answers}
+					onAnswerClick={props.onAnswerClick}
+				/>
+
 			</div>
-		)
-	}
-}
+);
 
 export default ActiveQuiz;
