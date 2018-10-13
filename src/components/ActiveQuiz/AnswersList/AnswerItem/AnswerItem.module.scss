@@ -4,8 +4,20 @@
 	padding: 5px 10px;
 	margin-bottom: 5px;
 	cursor: pointer;
+	transition: all .3s ease;
 	&:hover {
-		transition: all .3s ease;
 		background-color: rgba(#ffffff, .2);
+	}
+	&__success {
+		background-color: rgba(161, 240,69, .7);
+		&:hover {
+			background-color: rgba(161, 240,69, .7);
+		}
+	}
+	&__error {
+		background-color: rgba(240, 87, 108, .7);
+		&:hover {
+			background-color: rgba(240, 87, 108, .7);
+		}
 	}
 }
