@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
 import classes from "./Auth.module.scss";
-import Button from "../../components/UI/Button/Button"
-import Input from "../../components/UI/Input/Input"
+import Button from "../../components/UI/Button/Button";
+import Input from "../../components/UI/Input/Input";
+import is from "is_js";
 
-function validateEmail(email) {
-	const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-	return re.test(String(email).toLowerCase());
-}
 
 class Auth extends Component {
 
 	state = {
+		isFromValid: false,
 		formControls: {
 			email: {
 				value: '',
@@ -62,7 +60,7 @@ class Auth extends Component {
 			isValid = value.trim() !== '' && isValid;
 		}
 		if (validation.email) {
-			isValid = validateEmail(value) && isValid;
+			isValid = is.email(value) && isValid;
 		}
 		if (validation.minLength) {
 			isValid = value.length >= validation.minLength && isValid;
@@ -81,8 +79,14 @@ class Auth extends Component {
 		
 		formControls[controlName] = control;
 
+		let isFromValid = true;
+
+		Object.keys(formControls).forEach(name => {
+			isFromValid = formControls[name].valid && isFromValid;
+		});
+
 		this.setState({
-			formControls
+			formControls, isFromValid
 		})
 	}
 
@@ -118,6 +122,7 @@ class Auth extends Component {
 						<Button 
 							type='success'
 							onClick={this.loginHandler}
+							disabled={!this.state.isFromValid}
 						>
 							Войти
 						</Button>
@@ -125,6 +130,7 @@ class Auth extends Component {
 						<Button 
 							type='primary'
 							onClick={this.registerHandler}
+							
 						>
 							Зарегистрироваться 
 						</Button>
