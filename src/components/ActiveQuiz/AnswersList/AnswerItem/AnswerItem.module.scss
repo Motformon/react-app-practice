@@ -8,16 +8,18 @@
 	&:hover {
 		background-color: rgba(#ffffff, .2);
 	}
-	&__success {
+
+}
+
+.success {
+	background-color: rgba(161, 240,69, .7);
+	&:hover {
 		background-color: rgba(161, 240,69, .7);
-		&:hover {
-			background-color: rgba(161, 240,69, .7);
-		}
 	}
-	&__error {
+}
+.error {
+	background-color: rgba(240, 87, 108, .7);
+	&:hover {
 		background-color: rgba(240, 87, 108, .7);
-		&:hover {
-			background-color: rgba(240, 87, 108, .7);
-		}
 	}
 }
